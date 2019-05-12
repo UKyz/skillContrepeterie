@@ -3,12 +3,7 @@
 
 const Alexa = require('ask-sdk-core');
 
-// =========================================================================================================================================
-// TODO: The items below this comment need your attention.
-// =========================================================================================================================================
-
-const SKILL_NAME = 'Space Facts';
-const GET_FACT_MESSAGE = 'Here\'s your fact: ';
+const SKILL_NAME = 'Contrepèterie';
 const HELP_MESSAGE = 'You can say tell me a space fact, or, you can say ' +
 	'exit... What can I help you with?';
 const HELP_REPROMPT = 'What can I help you with?';
@@ -16,27 +11,57 @@ const FALLBACK_MESSAGE = 'The Space Facts skill can\'t help you with that.' +
 	' It can help you discover facts about space if you say tell me a space' +
 	' fact. What can I help you with?';
 const FALLBACK_REPROMPT = 'What can I help you with?';
-const STOP_MESSAGE = 'Goodbye!';
+const STOP_MESSAGE = 'À bientôt!';
+
+const dataNewOne = [
+	'Voici votre contrepèterie : ',
+	'J\'ai une contrepèterie pour vous : ',
+	'Votre contrepèterie est : ',
+];
 
 const data = [
-	'A year on Mercury is just 88 days long.',
-	'Despite being farther from the Sun, Venus experiences higher' +
-	' temperatures than Mercury.',
-	'Venus rotates counter-clockwise, possibly because of a collision in the' +
-	' past with an asteroid.',
-	'On Mars, the Sun appears about half the size as it does on Earth.',
-	'Earth is the only planet not named after a god.',
-	'Jupiter has the shortest day of all the planets.',
-	'The Milky Way galaxy will collide with the Andromeda Galaxy in about 5' +
-	' billion years.',
-	'The Sun contains 99.86% of the mass in the Solar System.',
-	'The Sun is an almost perfect sphere.',
-	'A total solar eclipse can happen once every 1 to 2 years. This makes ' +
-	'them a rare event.',
-	'Saturn radiates two and a half times more energy into space than it ' +
-	'receives from the sun.',
-	'The temperature inside the Sun can reach 15 million degrees Celsius.',
-	'The Moon is moving approximately 3.8 cm away from our planet every year.'
+	'J’ai glissé dans la piscine.',
+	'Le choix dans la date.',
+	'J’aime vachement votre frangin.',
+	'Salut Fred !',
+	'Retire ta lampe que je guette.',
+	'Les nouilles cuisent au jus de canne.',
+	'Nadal a un tennis prévisible.',
+	'Nul n\'est jamais assez fort pour ce calcul.',
+	'Superman a une bouille incroyable.',
+	'Les populations du Cap mettent les échecs en valeur.',
+	'Goûter-moi cette farce !.',
+	'Le pope réclame un graphiste.',
+	'Mots fléchés.',
+	'Un champ de coton.',
+	'Mets ta casquette.',
+	'Qui a véhiculé le Président flambant.',
+	'Chaques nuit, l\'horticulteur rêve de serres de pins',
+	'Quand les athées de battent, les abbés se taisent',
+	'Elle a quitté la ferme pleine d\'espoir jusqu\'au pount du Jura',
+	'L\'entraineur tâte la crosse de la hockeyeuse.',
+	'Arriver à Béziers la veille.',
+	'Jean-Paul, le pape hautain.',
+	'Le professeur vante la constitution.',
+	'La cuvette est pleine de bouillon.',
+	'Le révérend arrive à la pièce plein de mormons.',
+	'Les salières me font dériver.',
+	'Défense aux dames patronesses de quêter sur un pliant.',
+	'Attention vous videz vos nouilles sur ma cape !',
+	'Avec leur nouveau règlement sur les munitions, ils nous en perdent.',
+	'Ce garçon de douze ans déclare qu\'il jouera au tennis à présent.',
+	'Il faut savoir tirer un trait d\'un seul coup, explique l\'arbalétrier.',
+	'La montagnarde a encore entassé ses crampons.',
+	'Le tout était trop confus pour laisser une possibilité d\'ouverture.',
+	'Les cyclistes ont de drôles de bouilles, sans cycles.',
+	'Les colonnes de gauchistes de branchent sur l\'Irak.',
+	'L\'Irak n\'a qu\'une toute petite chance.',
+	'Est ce que la canicule t\'emballe.',
+	'Il faut couper les nouilles au sécateur.',
+	'Regardez ce chat qui rit !',
+	'Le champion jette avec puissance.',
+	'Le facteur ne veut pas qu\'on chipotte quand il trie.'
+	
 ];
 
 const GetNewFactHandler = {
@@ -47,10 +72,12 @@ const GetNewFactHandler = {
 				request.intent.name === 'GetNewFactIntent');
 	},
 	handle(handlerInput) {
-		const number = Math.floor(Math.random() * data.length);
-		const randomFact = data[number];
-		// Const randomFact = cookbook.getRandomItem(data);
-		const speechOutput = GET_FACT_MESSAGE + randomFact;
+		const numberN = Math.floor(Math.random() * dataNewOne.length);
+		const numberD = Math.floor(Math.random() * data.length);
+		const newData = dataNewOne[numberN];
+		const randomFact = data[numberD];
+		
+		const speechOutput = newData + randomFact;
 
 		return handlerInput.responseBuilder
 			.speak(speechOutput)
